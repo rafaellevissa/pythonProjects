@@ -11,6 +11,8 @@ def signalSave(signalValue):
     cursor.execute("""
     INSERT INTO actions (value, created_at)
     VALUES (?,?)
-    """ (signalValue, datetime.datetime.now()))
+    """, (signalValue, datetime.datetime.now()))
 
     conn.commit()
+
+    conn.close()
