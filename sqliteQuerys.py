@@ -5,6 +5,7 @@ import datetime
 conn = sqlite3.connect(dataBaseName())
 cursor = conn.cursor()
 
+<<<<<<< HEAD
 # Salva os valores na tabela actions
 def signalSave(quantidade, lineProduction):
 
@@ -16,6 +17,22 @@ def signalSave(quantidade, lineProduction):
     conn.commit()
     conn.close()
 
+=======
+
+# Salva os valores na tabela actions
+def signalSave(signalValue):
+
+    cursor.execute("""
+    INSERT INTO actions (value, created_at)
+    VALUES (?,?)
+    """, (signalValue, datetime.datetime.now()))
+
+    conn.commit()
+
+    conn.close()
+
+
+>>>>>>> ac337cda66260511c2a6cf34076c8c206f6c2c2f
 # Retorna a quantidade de registros cadastrados no banco
 def signalsCount():
 
@@ -26,6 +43,7 @@ def signalsCount():
 	for row in cursor.fetchall():
 		signalCount = row[0]
 
+<<<<<<< HEAD
 	return signalCount
 
 def saveLineProduction(lineProduction):
@@ -48,3 +66,6 @@ def selectLineProduction():
         lineProduction = row[1]
 
     return lineProduction
+=======
+	return signalCount
+>>>>>>> ac337cda66260511c2a6cf34076c8c206f6c2c2f
