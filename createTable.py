@@ -9,10 +9,21 @@ def createTable(cursor):
 	cursor.execute("""
 	CREATE TABLE actions (
 		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-		value INTEGER,
+		quantidade INTEGER,
+		linha_producao VARCHAR,
 		created_at TIMESTAMP
 		);
 	""")
 
+# Cria a tabela de Linha de Produção
+def createTableLinhaProducao(cursor):
+	cursor.execute("""
+	CREATE TABLE linhaProducao (
+		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+		linha_producao VARCHAR,
+		created_at TIMESTAMP
+		);
+	""")
 
+#createTableLinhaProducao(cursor)
 createTable(cursor)
