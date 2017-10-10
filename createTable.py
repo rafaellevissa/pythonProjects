@@ -25,5 +25,5 @@ def createTableLinhaProducao(cursor):
 		);
 	""")
 
-#createTableLinhaProducao(cursor)
+createTableLinhaProducao(cursor)
 createTable(cursor)
