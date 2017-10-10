@@ -10,7 +10,7 @@ cursor = conn.cursor()
 def signalSave(quantidade, lineProduction):
 
     cursor.execute("""
-    INSERT INTO actions (quantidade, linha_producao, created_at)
+    INSERT INTO producao (quantidade, linha_producao, created_at)
     VALUES (?,?,?)
     """, (quantidade, lineProduction, datetime.datetime.now()))
 
@@ -21,7 +21,7 @@ def signalSave(quantidade, lineProduction):
 def signalSave(signalValue):
 
     cursor.execute("""
-    INSERT INTO actions (value, created_at)
+    INSERT INTO producao (value, created_at)
     VALUES (?,?)
     """, (signalValue, datetime.datetime.now()))
 
@@ -31,7 +31,7 @@ def signalSave(signalValue):
 # Retorna a quantidade de registros cadastrados no banco
 def signalsCount():
 
-	cursor.execute("""SELECT COUNT(*) FROM actions""")
+	cursor.execute("""SELECT COUNT(*) FROM producao""")
 
 	signalCount = 0
 

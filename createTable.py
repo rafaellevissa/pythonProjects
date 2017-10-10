@@ -5,9 +5,9 @@ conn = sqlite3.connect(dataBaseName())
 cursor = conn.cursor()
 
 # Realiza a criação da tabela do projeto
-def createTable(cursor):
+def createTableProducao(cursor):
 	cursor.execute("""
-	CREATE TABLE actions (
+	CREATE TABLE producao (
 		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 		quantidade INTEGER,
 		linha_producao VARCHAR,
@@ -25,5 +25,15 @@ def createTableLinhaProducao(cursor):
 		);
 	""")
 
-createTableLinhaProducao(cursor)
-createTable(cursor)
+try:
+    createTableLinhaProducao(cursor)
+    print("Tabela Linha de producao criada com Sucesso!")
+except Exception as e:
+    print("Erro ao tentar criar a Tabela Linha de producao: ", e)
+
+
+try:
+    createTableProducao(cursor)
+    print("Tabela Producao criada com Sucesso!")
+except Exception as e:
+	print("Erro ao tentar criar a Tabela Producao: ", e)
