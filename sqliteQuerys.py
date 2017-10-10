@@ -40,6 +40,7 @@ def signalsCount():
 
 	return signalCount
 
+# Cadastra a Linha de Produção
 def saveLineProduction(lineProduction):
 
     cursor.execute("""
@@ -50,6 +51,7 @@ def saveLineProduction(lineProduction):
     conn.commit()
     conn.close()
 
+# Seleciona a Linha de Produção cadastrada
 def selectLineProduction():
 
     cursor.execute("""SELECT * FROM linhaProducao LIMIT 1""")
