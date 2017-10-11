@@ -11,6 +11,7 @@ def createTableProducao(cursor):
 		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 		quantidade INTEGER,
 		linha_producao VARCHAR,
+		hora VARCHAR,
 		created_at TIMESTAMP
 		);
 	""")

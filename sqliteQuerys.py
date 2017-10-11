@@ -7,38 +7,63 @@ cursor = conn.cursor()
 
 
 # Salva os valores na tabela actions
-def signalSave(quantidade, lineProduction):
+def signalSave(hora, lineProduction):
 
     cursor.execute("""
-    INSERT INTO producao (quantidade, linha_producao, created_at)
-    VALUES (?,?,?)
-    """, (quantidade, lineProduction, datetime.datetime.now()))
+    INSERT INTO producao (quantidade, linha_producao, hora, created_at)
+    VALUES (?,?,?,?)
+    """, (1, lineProduction, hora, datetime.datetime.now()))
 
     conn.commit()
     conn.close()
 
-# Salva os valores na tabela actions
-def signalSave(signalValue):
+
+# Edita o campo Quantidade da tabela Producao
+def signalUpdate(hora):
+    
+    quantidade = getSignalFromHora(hora) + 1
 
     cursor.execute("""
-    INSERT INTO producao (value, created_at)
-    VALUES (?,?)
-    """, (signalValue, datetime.datetime.now()))
+    UPDATE producao SET quantidade = ? WHERE hora = ?
+    """, (quantidade,hora,))
 
     conn.commit()
     conn.close()
 
-# Retorna a quantidade de registros cadastrados no banco
-def signalsCount():
 
-	cursor.execute("""SELECT COUNT(*) FROM producao""")
+# Retorna o valor do campo Quantidade buscando pelo campo hora
+def getSignalFromHora(hora):
+    
+    hora = str(hora)
+    cursor.execute("""SELECT quantidade FROM producao WHERE hora = ?""", (hora,))
 
-	signalCount = 0
+    quantidade = 0
 
-	for row in cursor.fetchall():
-		signalCount = row[0]
+    for row in cursor.fetchall():
+        quantidade = row[0]
 
-	return signalCount
+    if (quantidade > 0):
+        return quantidade
+    else:
+        return False
+
+
+# Verifica se existe algum registro por determinada hora
+def existSignalFromHora(hora):
+    
+    hora = str(hora)
+    cursor.execute("""SELECT quantidade FROM producao WHERE hora = ?""", (hora,))
+
+    quantidade = 0
+
+    for row in cursor.fetchall():
+        quantidade = row[0]
+
+    if quantidade > 0:
+        return True
+
+    return False
+
 
 # Cadastra a Linha de Produção
 def saveLineProduction(lineProduction):
@@ -50,6 +75,7 @@ def saveLineProduction(lineProduction):
 
     conn.commit()
     conn.close()
+
 
 # Seleciona a Linha de Produção cadastrada
 def selectLineProduction():
