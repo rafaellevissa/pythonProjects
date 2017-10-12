@@ -4,24 +4,46 @@ import datetime
 
 conn = sqlite3.connect(dataBaseName())
 cursor = conn.cursor()
+time = datetime.datetime.now()
 
 
-# Salva os valores na tabela actions
-def signalSave(hora, lineProduction):
+
+#-------------------------------------------------------------------------------
+# Cria uma data no formato Y-m-d
+#-------------------------------------------------------------------------------
+def myDateFormat():
+    return str(time.year) + "-" + str(time.month) + "-" + str(time.day)
+#-------------------------------------------------------------------------------
+
+
+
+#-------------------------------------------------------------------------------
+# Salva os registros na tabela Produção
+#-------------------------------------------------------------------------------
+def signalSave(lineProduction):
+
+    hora = str(time.hour)
 
     cursor.execute("""
     INSERT INTO producao (quantidade, linha_producao, hora, created_at)
     VALUES (?,?,?,?)
-    """, (1, lineProduction, hora, datetime.datetime.now()))
+    """, (1, lineProduction, hora, myDateFormat()))
 
     conn.commit()
     conn.close()
 
+#-------------------------------------------------------------------------------
 
-# Edita o campo Quantidade da tabela Producao
-def signalUpdate(hora):
+
+
+#-------------------------------------------------------------------------------
+# Edita o campo Quantidade da tabela Produçao sempre incrementando 1
+#-------------------------------------------------------------------------------
+def signalUpdate():
     
-    quantidade = getSignalFromHora(hora) + 1
+    quantidade = getSignalFromHourAndDate() + 1
+
+    hora = str(time.hour)
 
     cursor.execute("""
     UPDATE producao SET quantidade = ? WHERE hora = ?
@@ -29,13 +51,19 @@ def signalUpdate(hora):
 
     conn.commit()
     conn.close()
+#-------------------------------------------------------------------------------
 
 
-# Retorna o valor do campo Quantidade buscando pelo campo hora
-def getSignalFromHora(hora):
+
+#-------------------------------------------------------------------------------
+# Retorna O valor do campo Quantidade buscando pelo campo Hora atual e Data atual da tabela Produção
+# Return : O valor do campo Quantidade
+#-------------------------------------------------------------------------------
+def getSignalFromHourAndDate():
     
-    hora = str(hora)
-    cursor.execute("""SELECT quantidade FROM producao WHERE hora = ?""", (hora,))
+    hora = str(time.hour)
+
+    cursor.execute("""SELECT quantidade FROM producao WHERE hora = ? AND created_at = ?""", (hora, myDateFormat(),))
 
     quantidade = 0
 
@@ -46,13 +74,18 @@ def getSignalFromHora(hora):
         return quantidade
     else:
         return False
+#-------------------------------------------------------------------------------
 
 
-# Verifica se existe algum registro por determinada hora
-def existSignalFromHora(hora):
+
+#-------------------------------------------------------------------------------
+# Verifica se existe algum registro por Hora atual e Data atual da tabela Produção
+# Return : True ou False
+#-------------------------------------------------------------------------------
+def existSignalFromHour():
     
-    hora = str(hora)
-    cursor.execute("""SELECT quantidade FROM producao WHERE hora = ?""", (hora,))
+    hora = str(time.hour)
+    cursor.execute("""SELECT quantidade FROM producao WHERE hora = ? AND created_at = ?""", (hora, myDateFormat(),))
 
     quantidade = 0
 
@@ -63,21 +96,30 @@ def existSignalFromHora(hora):
         return True
 
     return False
+#-------------------------------------------------------------------------------
 
 
+
+#-------------------------------------------------------------------------------
 # Cadastra a Linha de Produção
+#-------------------------------------------------------------------------------
 def saveLineProduction(lineProduction):
 
     cursor.execute("""
     INSERT INTO linhaProducao (linha_producao, created_at)
     VALUES (?,?)
-    """, (lineProduction, datetime.datetime.now()))
+    """, (lineProduction, myDateFormat()))
 
     conn.commit()
     conn.close()
+#-------------------------------------------------------------------------------
 
 
+
+#-------------------------------------------------------------------------------
 # Seleciona a Linha de Produção cadastrada
+# Return : O valor do campo linha_produção da tabela Produção
+#-------------------------------------------------------------------------------
 def selectLineProduction():
 
     cursor.execute("""SELECT * FROM linhaProducao LIMIT 1""")
@@ -88,3 +130,4 @@ def selectLineProduction():
         lineProduction = row[1]
 
     return lineProduction
+#-------------------------------------------------------------------------------

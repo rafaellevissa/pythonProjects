@@ -12,7 +12,7 @@ def createTableProducao(cursor):
 		quantidade INTEGER,
 		linha_producao VARCHAR,
 		hora VARCHAR,
-		created_at TIMESTAMP
+		created_at VARCHAR
 		);
 	""")
 
