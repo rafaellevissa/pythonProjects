@@ -18,7 +18,7 @@ def panelOptions():
 # Verifica se existe uma Linha de Produção Cadastrada nesse Device
 if str(selectLineProduction()) < '1':
 	panelOptions()
-	getOption = input("Cadastre uma Linha de Producao. [Enter]")
+	getOption = print("Cadastre uma Linha de Producao.")
 	print("================================================================================================================")
 else:
 	terminalClear()

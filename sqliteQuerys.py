@@ -46,7 +46,7 @@ def signalUpdate():
     hora = str(time.hour)
 
     cursor.execute("""
-    UPDATE producao SET quantidade = ? WHERE hora = ?
+    UPDATE producao SET quantidade = ? WHERE hora = ? AND enviado IS NULL
     """, (quantidade,hora,))
 
     conn.commit()
@@ -130,4 +130,30 @@ def selectLineProduction():
         lineProduction = row[1]
 
     return lineProduction
+#-------------------------------------------------------------------------------
+
+
+
+#-------------------------------------------------------------------------------
+# Seleciona todos os registros que ainda não foram exportados
+# Return : Tupla com todos os registro
+#-------------------------------------------------------------------------------
+def selectAllSignals():
+
+    cursor.execute("""SELECT * FROM producao WHERE enviado is null""")
+    return cursor.fetchall()
+#-------------------------------------------------------------------------------
+
+
+
+#-------------------------------------------------------------------------------
+# Seta os registros que já foram exportados
+#-------------------------------------------------------------------------------
+def setSignalsExportedBYid(id):
+    
+    cursor.execute("""
+    UPDATE producao SET enviado = ? WHERE id = ?
+    """, ("true", id,))
+
+    conn.commit()
 #-------------------------------------------------------------------------------
