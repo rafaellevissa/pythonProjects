@@ -50,7 +50,7 @@ def signalUpdate():
     """, (quantidade,hora,))
 
     conn.commit()
-    conn.close()
+    #conn.close()
 #-------------------------------------------------------------------------------
 
 
@@ -161,4 +161,6 @@ def setSignalsExportedBYid(id):
 # Apenas me mostra uma Tupla dos registros
 def showMeTheProducaoTable():
     cursor.execute("""SELECT * FROM producao""")
-    return cursor.fetchall()
+
+    for row in cursor.fetchall():
+        print("id: " + str(row[0]) + " | quantidade: " + str(row[1]) + " | linha producao: " + str(row[2]) + " | hora: " + str(row[3]) + " | data: " + str(row[4]) + " | enviado: " + str(row[5]))

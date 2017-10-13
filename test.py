@@ -20,7 +20,7 @@ if (existSignalFromHour() != True):
 
 		signalSave(selectLineProduction())
 		print("Novo registro realizado com Sucesso.")
-		#print(showMeTheProducaoTable())
+		showMeTheProducaoTable()
 
 	except Exception as e:
 		print("Erro ao tentar Cadastrar um novo Registro: ", e)
@@ -31,6 +31,7 @@ else:
 
 		signalUpdate()
 		print("Novo incremento realizado com Sucesso.")
+		showMeTheProducaoTable()
 
 	except Exception as e:
 		print("Erro ao tentar Incrementar um Registro: ", e)
