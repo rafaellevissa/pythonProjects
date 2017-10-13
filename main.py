@@ -4,30 +4,51 @@ from sqliteQuerys import signalSave
 from sqliteQuerys import selectLineProduction
 from sqliteQuerys import existSignalFromHour
 from sqliteQuerys import signalUpdate
+from sqliteQuerys import showMeTheProducaoTable
 import datetime
+import time
 
-signalFromGPIO = 0;
+import RPi.GPIO as GPIO 
+
+PIN16 = 16
+
+# Configura o modo de definicao de pinos como BOARD
+GPIO.setmode(GPIO.BOARD)
+
+# Destiva avisos
+GPIO.setwarnings(False) 
+
+# Resistencia interna no input
+GPIO.setup(PIN,GPIO.IN, pull_up_down = GPIO.PUD_DOWN) 
+
+# Cadastrando evento de borda de descida
+GPIO.add_event_detect(PIN, GPIO.FALLING)
 
 #-------------------------------------------------------------------------------
 # Verifica se existe algum registro por hora atual e data atual
 #-------------------------------------------------------------------------------
-if (existSignalFromHour() != True):
+while (1):
 
-	try:
+	if GPIO.event_detected(PIN):
 
-		signalSave(selectLineProduction())
-		print("Novo registro realizado com Sucesso.")
+		if (existSignalFromHour() != True):
 
-	except Exception as e:
-		print("Erro ao tentar Cadastrar um novo Registro: ", e)
+			try:
 
-else:
+				signalSave(selectLineProduction())
+				print("Novo registro realizado com Sucesso.")
+				print(showMeTheProducaoTable())
 
-	try:
+			except Exception as e:
+				print("Erro ao tentar Cadastrar um novo Registro: ", e)
 
-		signalUpdate()
-		print("Novo incremento realizado com Sucesso.")
+		else:
 
-	except Exception as e:
-		print("Erro ao tentar Incrementar um Registro: ", e)
+			try:
+
+				signalUpdate()
+				print("Novo incremento realizado com Sucesso.")
+
+			except Exception as e:
+				print("Erro ao tentar Incrementar um Registro: ", e)
 #-------------------------------------------------------------------------------

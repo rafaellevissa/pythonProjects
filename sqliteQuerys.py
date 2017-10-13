@@ -157,3 +157,8 @@ def setSignalsExportedBYid(id):
 
     conn.commit()
 #-------------------------------------------------------------------------------
+
+# Apenas me mostra uma Tupla dos registros
+def showMeTheProducaoTable():
+    cursor.execute("""SELECT * FROM producao WHERE enviado is null""")
+    return cursor.fetchall()
