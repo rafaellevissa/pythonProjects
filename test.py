@@ -1,27 +1,37 @@
-from sqliteQuerys import selectAllSignals
-from sqliteQuerys import setSignalsExportedBYid
-from mysqlQuerys import exportDataToExternalDatabase
+import sqlite3
+from dataBaseName import dataBaseName
+from sqliteQuerys import signalSave
+from sqliteQuerys import selectLineProduction
+from sqliteQuerys import existSignalFromHour
+from sqliteQuerys import signalUpdate
+from sqliteQuerys import showMeTheProducaoTable
+import datetime
+import time
+
+
 
 #-------------------------------------------------------------------------------
-# Realiza a exportação dos registros da base local para o banco de dados remoto
+# Verifica se existe algum registro por hora atual e data atual
 #-------------------------------------------------------------------------------
-for row in selectAllSignals():
-    
-    # Tenta gravar os dados no Banco de dados remoto
-    # row[1] = quantidade
-    # row[2] = linha de produção
-    # row[3] = hora do cadastro do registro
-    # row[4] = ano-mes-dia do cadastro do registro
-	try:
-		exportDataToExternalDatabase(row[1], row[2], row[3], row[4])
-	except Exception as e:
-		print("Erro ao tentar Exportar os dados para o Banco remoto.")
-		exit()
 
-    # Tenta marcar como enviado todos os registros que de fato foram exportados
-    # row[0] = Id dos registro enviados
+if (existSignalFromHour() != True):
+
 	try:
-		setSignalsExportedBYid(row[0])
+
+		signalSave(selectLineProduction())
+		print("Novo registro realizado com Sucesso.")
+		#print(showMeTheProducaoTable())
+
 	except Exception as e:
-		print("Erro ao tentar Setar como (true) os registros que já foram Exportados para o Banco remoto.")
+		print("Erro ao tentar Cadastrar um novo Registro: ", e)
+
+else:
+
+	try:
+
+		signalUpdate()
+		print("Novo incremento realizado com Sucesso.")
+
+	except Exception as e:
+		print("Erro ao tentar Incrementar um Registro: ", e)
 #-------------------------------------------------------------------------------

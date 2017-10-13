@@ -30,7 +30,7 @@ def signalSave(lineProduction):
     """, (1, lineProduction, hora, myDateFormat()))
 
     conn.commit()
-    conn.close()
+    #conn.close()
 
 #-------------------------------------------------------------------------------
 

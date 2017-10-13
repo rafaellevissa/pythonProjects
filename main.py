@@ -10,7 +10,7 @@ import time
 
 import RPi.GPIO as GPIO 
 
-PIN16 = 16
+PIN = 16
 
 # Configura o modo de definicao de pinos como BOARD
 GPIO.setmode(GPIO.BOARD)
