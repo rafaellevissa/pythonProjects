@@ -37,6 +37,7 @@ while (1):
 
 				signalSave(selectLineProduction())
 				print("Novo registro realizado com Sucesso.")
+
 				showMeTheProducaoTable()
 
 			except Exception as e:
@@ -48,6 +49,7 @@ while (1):
 
 				signalUpdate()
 				print("Novo incremento realizado com Sucesso.")
+				
 				showMeTheProducaoTable()
 
 			except Exception as e:

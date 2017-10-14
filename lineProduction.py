@@ -3,7 +3,7 @@ from dataBaseName import dataBaseName
 from sqliteQuerys import signalSave
 from sqliteQuerys import saveLineProduction
 from sqliteQuerys import selectLineProduction
-import os
+from terminalClear import terminalClear
 
 def terminalClear():
 	os.system('cls' if os.name == 'nt' else 'clear')

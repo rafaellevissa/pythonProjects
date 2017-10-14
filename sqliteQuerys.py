@@ -1,5 +1,6 @@
 import sqlite3
 from dataBaseName import dataBaseName
+from terminalClear import terminalClear
 import datetime
 
 conn = sqlite3.connect(dataBaseName())
@@ -158,9 +159,23 @@ def setSignalsExportedBYid(id):
     conn.commit()
 #-------------------------------------------------------------------------------
 
-# Apenas me mostra uma Tupla dos registros
+
+
+#-------------------------------------------------------------------------------
+# Apresenta todos os Registros cadastrados na tabela Produção
+#-------------------------------------------------------------------------------
 def showMeTheProducaoTable():
-    cursor.execute("""SELECT * FROM producao""")
+
+    cursor.execute("""SELECT * FROM producao ORDER BY created_at ASC, hora DESC""")
+    
+    terminalClear()
+
+    print("-------------------------------------------------------------------------------------")
+    print("REGISTROS CADASTRADOS NA TABELA PRODUCAO")
+    print("-------------------------------------------------------------------------------------")
 
     for row in cursor.fetchall():
-        print("id: " + str(row[0]) + " | quantidade: " + str(row[1]) + " | linha producao: " + str(row[2]) + " | hora: " + str(row[3]) + " | data: " + str(row[4]) + " | enviado: " + str(row[5]))
+        quantidade = "0" + str(row[1]) if row[1] < 10 else str(row[1])
+
+        print("id: " + str(row[0]) + " | quantidade: " + quantidade + " | linha producao: " + str(row[2]) + " | hora: " + str(row[3]) + " | data: " + str(row[4]) + " | enviado: " + str(row[5]))
+#-------------------------------------------------------------------------------
