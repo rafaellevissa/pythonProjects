@@ -63,5 +63,15 @@
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
+<script type="text/javascript">
+
+	function atualizar() {
+	  location.reload(true)
+	}
+
+   window.setInterval("atualizar()",10000);
+
+</script>
+
 </body>
 </html>
