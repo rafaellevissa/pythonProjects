@@ -40,7 +40,7 @@ body {
 
 .content-top h1, h2, h3 {
 	margin:0;
-	color:white;
+	color:#002e60;
 	text-align:center;
 	display:block;
 	padding-top:15px;
@@ -67,6 +67,7 @@ body {
 
 .number {
 	color:#006600;
-	font-size:100px;
+	font-size:200px;
 	margin-top:0;
+	font-weight:bold;
 }

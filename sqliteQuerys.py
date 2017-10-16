@@ -179,3 +179,19 @@ def showMeTheProducaoTable():
 
         print("id: " + str(row[0]) + " | quantidade: " + quantidade + " | linha producao: " + str(row[2]) + " | hora: " + str(row[3]) + " | data: " + str(row[4]) + " | enviado: " + str(row[5]))
 #-------------------------------------------------------------------------------
+
+
+
+#-------------------------------------------------------------------------------
+# Apresenta todos os Registros cadastrados na tabela Produção
+#-------------------------------------------------------------------------------
+def countToday():
+
+    cursor.execute("""SELECT SUM(quantidade) AS produzidos FROM producao WHERE created_at = ?""", (myDateFormat(),))
+    
+    data = 0
+    for row in cursor.fetchall():
+        data = row[0]
+
+    return data
+#-------------------------------------------------------------------------------

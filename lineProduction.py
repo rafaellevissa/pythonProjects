@@ -4,6 +4,7 @@ from sqliteQuerys import signalSave
 from sqliteQuerys import saveLineProduction
 from sqliteQuerys import selectLineProduction
 from terminalClear import terminalClear
+import os
 
 def terminalClear():
 	os.system('cls' if os.name == 'nt' else 'clear')
