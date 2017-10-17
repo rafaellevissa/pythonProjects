@@ -1,8 +1,8 @@
-import pymysql
 import sqlite3
 from sqliteQuerys import selectAllSignals
+from mysqlConnect import connect
 
-conn = pymysql.connect(host = "", user = "root", password = "", db = "")
+conn = connect()
 connect = conn.cursor()
 
 #-------------------------------------------------------------------------------
