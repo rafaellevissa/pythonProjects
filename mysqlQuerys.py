@@ -2,7 +2,7 @@ import pymysql
 import sqlite3
 from sqliteQuerys import selectAllSignals
 
-conn = pymysql.connect(host = "teste.wifiaqui.com.br", user = "root", password = "mysql.xlogic", db = "just-test")
+conn = pymysql.connect(host = "", user = "root", password = "", db = "")
 connect = conn.cursor()
 
 #-------------------------------------------------------------------------------
