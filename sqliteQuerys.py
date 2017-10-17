@@ -118,6 +118,27 @@ def saveLineProduction(lineProduction):
 
 
 #-------------------------------------------------------------------------------
+# Verifica se Existe uma linha de Produção cadastrada
+#-------------------------------------------------------------------------------
+def existLineProduction():
+
+    cursor.execute("""
+    SELECT COUNT(*) FROM linhaProducao
+    """)
+
+    quantidade = 0
+
+    for row in cursor.fetchall():
+        quantidade = row[0]
+
+    if quantidade > 0:
+        return True
+
+    return False
+#-------------------------------------------------------------------------------
+
+
+#-------------------------------------------------------------------------------
 # Seleciona a Linha de Produção cadastrada
 # Return : O valor do campo linha_produção da tabela Produção
 #-------------------------------------------------------------------------------

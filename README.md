@@ -7,6 +7,8 @@ Por padrão já vem com o banco (cadeado.db) porém é recomendado que ele seja 
 
 2º Rode o script: python createTable.py (Serão criadas as tabelas ‘linhaProducao’ e ‘producao’) <br>
 
-Para criar uma linha de produção rode o script: python lineProduction.py <br>
+3º Para criar uma linha de produção rode o script: python lineProduction.py <br>
 
-Para simular o cadastro e incremento dos registros, rode o script: python main.py <br>
+4º Para simular o cadastro e incremento dos registros, rode o script: python test.py <br>
+
+<b>Obs:</b> Para ser utilizado em produção, o arquivo que deve ser executado para cadastrar a quantidade de cadeados no banco é o main.py

@@ -5,6 +5,7 @@ from sqliteQuerys import selectLineProduction
 from sqliteQuerys import existSignalFromHour
 from sqliteQuerys import signalUpdate
 from sqliteQuerys import showMeTheProducaoTable
+from terminalClear import terminalClear
 import datetime
 import time
 
@@ -23,6 +24,19 @@ GPIO.setup(PIN,GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
 
 # Cadastrando evento de borda de descida
 GPIO.add_event_detect(PIN, GPIO.FALLING)
+
+
+
+#-------------------------------------------------------------------------------
+# Verifica se existe algum registro na Tabela Linha de Produção
+#-------------------------------------------------------------------------------
+if existLineProduction() == False:
+	terminalClear()
+	print("Voce esqueceu de Cadastrar uma Linha de Producao. \n Digite: python lineProduction.py para criar!")
+	exit()
+#-------------------------------------------------------------------------------
+
+
 
 #-------------------------------------------------------------------------------
 # Verifica se existe algum registro por hora atual e data atual
