@@ -51,7 +51,7 @@
 
 	   	var time = setInterval(function() {
 		   	_getJsonCadeadosProduzidosNoDia();
-	   	}, 250);
+	   	}, 200);
 
 
 
