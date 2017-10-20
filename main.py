@@ -5,6 +5,7 @@ from sqliteQuerys import selectLineProduction
 from sqliteQuerys import existSignalFromHour
 from sqliteQuerys import signalUpdate
 from sqliteQuerys import showMeTheProducaoTable
+from sqliteQuerys import existLineProduction
 from terminalClear import terminalClear
 import datetime
 import time
