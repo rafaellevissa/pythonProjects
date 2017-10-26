@@ -50,7 +50,7 @@ while (1):
 
 			try:
 
-				signalSave(selectLineProduction())
+				signalSave(selectLineProduction()[0], selectLineProduction()[1])
 				print("Novo registro realizado com Sucesso.")
 
 				showMeTheProducaoTable()

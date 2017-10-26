@@ -21,14 +21,14 @@ def myDateFormat():
 #-------------------------------------------------------------------------------
 # Salva os registros na tabela Produção
 #-------------------------------------------------------------------------------
-def signalSave(lineProduction):
+def signalSave(lineProduction, descriptionLineProduction):
 
     hora = str(time.hour)
 
     cursor.execute("""
-    INSERT INTO producao (quantidade, linha_producao, hora, created_at)
-    VALUES (?,?,?,?)
-    """, (1, lineProduction, hora, myDateFormat()))
+    INSERT INTO producao (quantidade, linha_producao, linha_descricao, hora, created_at)
+    VALUES (?,?,?,?,?)
+    """, (1, lineProduction, descriptionLineProduction, hora, myDateFormat()))
 
     conn.commit()
     #conn.close()
@@ -104,12 +104,12 @@ def existSignalFromHour():
 #-------------------------------------------------------------------------------
 # Cadastra a Linha de Produção
 #-------------------------------------------------------------------------------
-def saveLineProduction(lineProduction):
+def saveLineProduction(lineProduction, descriptionLineProduction):
 
     cursor.execute("""
-    INSERT INTO linhaProducao (linha_producao, created_at)
-    VALUES (?,?)
-    """, (lineProduction, myDateFormat()))
+    INSERT INTO linhaProducao (linha_producao, linha_descricao, created_at)
+    VALUES (?,?,?)
+    """, (lineProduction, descriptionLineProduction, myDateFormat()))
 
     conn.commit()
     conn.close()
@@ -147,11 +147,13 @@ def selectLineProduction():
     cursor.execute("""SELECT * FROM linhaProducao LIMIT 1""")
 
     lineProduction = ""
+    descriptionLineProduction = ""
 
     for row in cursor.fetchall():
         lineProduction = row[1]
+        descriptionLineProduction = row[2]
 
-    return lineProduction
+    return [lineProduction, descriptionLineProduction]
 #-------------------------------------------------------------------------------
 
 
@@ -198,7 +200,7 @@ def showMeTheProducaoTable():
     for row in cursor.fetchall():
         quantidade = "0" + str(row[1]) if row[1] < 10 else str(row[1])
 
-        print("id: " + str(row[0]) + " | quantidade: " + quantidade + " | linha producao: " + str(row[2]) + " | hora: " + str(row[3]) + " | data: " + str(row[4]) + " | enviado: " + str(row[5]))
+        print("id: " + str(row[0]) + " | quantidade: " + quantidade + " | linha producao: " + str(row[2]) + " | descricao: " + str(row[3]) + " | hora: " + str(row[4]) + " | data: " + str(row[5]) + " | enviado: " + str(row[6]))
 #-------------------------------------------------------------------------------
 
 

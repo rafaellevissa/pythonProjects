@@ -28,14 +28,24 @@ else:
 	exit()
 
 
-name = ""
-while name == "":
-    name = input("Digite qual a linha de producao:")
+numeroLinhaProducao = ""
+while numeroLinhaProducao == "":
+    numeroLinhaProducao = input("Digite qual a linha de producao:")
+    
+    # Verifica se o valor passado é um Número
+    if not numeroLinhaProducao.isdigit():
+    	print("*****A Linha de producao deve ser um Numero*****")
+    	numeroLinhaProducao = ""
+
+
+descricaoLinha = ""
+while descricaoLinha == "":
+	descricaoLinha = input("Digite a descricao da Linha de Producao:")
 
 
 try:
 
-	saveLineProduction(name)
+	saveLineProduction(numeroLinhaProducao, descricaoLinha)
 	print("Cadastro realizado com Sucesso.")
 
 except Exception as e:
