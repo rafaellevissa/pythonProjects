@@ -159,6 +159,27 @@ def selectLineProduction():
 
 
 #-------------------------------------------------------------------------------
+# Verifica se Já existe uma Linha de produção cadastrada
+# Return : True or False
+#-------------------------------------------------------------------------------
+def existLineProduction():
+
+    cursor.execute("""SELECT id FROM linhaProducao""")
+
+    count = 0;
+
+    for row in cursor.fetchall():
+        count = row[0]
+
+    if count > 0:
+        return True
+
+    return False
+#-------------------------------------------------------------------------------
+
+
+
+#-------------------------------------------------------------------------------
 # Seleciona todos os registros que ainda não foram exportados
 # Return : Tupla com todos os registro
 #-------------------------------------------------------------------------------
@@ -206,7 +227,9 @@ def showMeTheProducaoTable():
 
 
 #-------------------------------------------------------------------------------
-# Apresenta todos os Registros cadastrados na tabela Produção
+# Apresenta a soma de todos os Registros cadastrados na tabela Produção. 
+# Obs: Registros do dia
+# return: INT 
 #-------------------------------------------------------------------------------
 def countToday():
 
@@ -234,3 +257,71 @@ def deleteExporteds():
     conn.close()
 
 #-------------------------------------------------------------------------------
+
+
+
+#-------------------------------------------------------------------------------
+# Verifica se existe registros na tabela1
+# return: True or False
+#-------------------------------------------------------------------------------
+def existDataInTable1():
+
+    cursor.execute("""SELECT id from tab1""")
+
+    quantidade = 0;
+
+    for row in cursor.fetchall():
+        quantidade = row[0]
+
+    if quantidade > 0:
+        return True
+
+    return False
+#-------------------------------------------------------------------------------
+
+
+
+#-------------------------------------------------------------------------------
+# Salva os registros na tabela1
+#-------------------------------------------------------------------------------
+def incrementContadorIntable1(countToday):
+
+    cursor.execute("""UPDATE tab1 SET contador = ?""", (countToday, ))
+
+    conn.commit()
+    conn.close()
+
+#-------------------------------------------------------------------------------
+
+def saveFakeDataInTable1():
+    cursor.execute("""
+        INSERT INTO tab1 
+        (linha, 
+         descricao_linha,
+         contador,
+         meta,
+         tempo_ciclo,
+         hora_inicio,
+         minuto_inicio,
+         hora_termino,
+         minuto_termino,
+         tempo_refresh_realizado,
+         tempo_refresh_homem,
+         created_at) VALUES (?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """, (
+            '5',
+            'linha05',
+            '4',
+            '2',
+            '12',
+            '12',
+            '18',
+            '12',
+            '1',
+            '00',
+            '47',
+            '2017-10-25 22:00:00'
+            ))
+
+    conn.commit()
+    conn.close()

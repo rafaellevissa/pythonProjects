@@ -6,6 +6,9 @@ from sqliteQuerys import existSignalFromHour
 from sqliteQuerys import signalUpdate
 from sqliteQuerys import showMeTheProducaoTable
 from sqliteQuerys import existLineProduction
+from sqliteQuerys import incrementContadorIntable1
+from sqliteQuerys import existDataInTable1
+from sqliteQuerys import countToday
 from terminalClear import terminalClear
 import datetime
 import time
@@ -35,6 +38,13 @@ if  existSignalFromHour() == False:
 	except Exception as e:
 		print("Erro ao tentar Cadastrar um novo Registro: ", e)
 
+
+	if existDataInTable1():
+		print('existe')
+
+	else:
+		print('nao existe dados na tabela1')
+
 else:
 
 	try:
@@ -45,4 +55,11 @@ else:
 
 	except Exception as e:
 		print("Erro ao tentar Incrementar um Registro: ", e)
+
+
+	if existDataInTable1():
+		incrementContadorIntable1(str(countToday()))
+
+	else:
+		print('nao existe dados na tabela1')
 #-------------------------------------------------------------------------------

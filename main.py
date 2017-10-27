@@ -6,6 +6,8 @@ from sqliteQuerys import existSignalFromHour
 from sqliteQuerys import signalUpdate
 from sqliteQuerys import showMeTheProducaoTable
 from sqliteQuerys import existLineProduction
+from sqliteQuerys import incrementContadorIntable1
+from sqliteQuerys import existDataInTable1
 from terminalClear import terminalClear
 import datetime
 import time
@@ -58,6 +60,17 @@ while (1):
 			except Exception as e:
 				print("Erro ao tentar Cadastrar um novo Registro: ", e)
 
+            # Verifica se existe registros na tabela 1
+			if existDataInTable1():
+
+				try:
+					incrementContadorIntable1(str(countToday()))
+				except Exception as e:
+					print("Erro ao tentar Incrementar o Contador na tabela1", e)
+
+			else:
+				print("Nao existe registros na tabela 1. O campo contador nao pode ser Incrementado")
+
 		else:
 
 			try:
@@ -69,4 +82,16 @@ while (1):
 
 			except Exception as e:
 				print("Erro ao tentar Incrementar um Registro: ", e)
+
+
+            # Verifica se existe registros na tabela 1
+			if existDataInTable1():
+
+				try:
+					incrementContadorIntable1(str(countToday()))
+				except Exception as e:
+					print("Erro ao tentar Incrementar o Contador na tabela1", e)
+
+			else:
+				print("Nao existe registros na tabela 1. O campo contador nao pode ser Incrementado")
 #-------------------------------------------------------------------------------

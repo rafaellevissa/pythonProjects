@@ -35,6 +35,7 @@ def createTable1(cursor):
 	CREATE TABLE tab1 (
 		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 		linha INT NOT NULL,
+		descricao_linha VARCHAR NOT NULL,
 		contador INT NOT NULL,
 		meta INT NOT NULL,
 		tempo_ciclo INT NOT NULL,

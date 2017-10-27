@@ -2,7 +2,7 @@ import sqlite3
 from dataBaseName import dataBaseName
 from sqliteQuerys import signalSave
 from sqliteQuerys import saveLineProduction
-from sqliteQuerys import selectLineProduction
+from sqliteQuerys import existLineProduction
 from terminalClear import terminalClear
 import os
 
@@ -17,7 +17,7 @@ def panelOptions():
    
 
 # Verifica se existe uma Linha de Produção Cadastrada nesse Device
-if str(selectLineProduction()) < '1':
+if existLineProduction() == False:
 	panelOptions()
 	getOption = print("Cadastre uma Linha de Producao.")
 	print("================================================================================================================")

@@ -1,6 +1,7 @@
 import sqlite3
 from sqliteQuerys import deleteExporteds
 
+# Deleta da tabela produção os dados que foram exportados
 try:
 	deleteExporteds();
 	print("Registros Exportados deletados com Sucesso!")
