@@ -1,5 +1,7 @@
 import sqlite3
 from dataBaseName import dataBaseName
+from sqliteQuerys import saveFakeDataInTable1
+from sqliteQuerys import existDataInTable1
 
 conn = sqlite3.connect(dataBaseName())
 cursor = conn.cursor()
@@ -7,7 +9,7 @@ cursor = conn.cursor()
 # Realiza a criação da tabela do projeto
 def createTableProducao(cursor):
 	cursor.execute("""
-	CREATE TABLE producao (
+	CREATE TABLE IF NOT EXISTS producao (
 		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 		quantidade INTEGER,
 		linha_producao INT,
@@ -21,7 +23,7 @@ def createTableProducao(cursor):
 # Cria a tabela de Linha de Produção
 def createTableLinhaProducao(cursor):
 	cursor.execute("""
-	CREATE TABLE linhaProducao (
+	CREATE TABLE IF NOT EXISTS linhaProducao (
 		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 		linha_producao INT,
 		linha_descricao VARCHAR,
@@ -32,7 +34,7 @@ def createTableLinhaProducao(cursor):
 # Cria a tabela1
 def createTable1(cursor):
 	cursor.execute("""
-	CREATE TABLE tab1 (
+	CREATE TABLE IF NOT EXISTS tab1 (
 		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 		linha INT NOT NULL,
 		descricao_linha VARCHAR NOT NULL,
@@ -68,3 +70,10 @@ try:
     print("Tabela tab1 criada com Sucesso!")
 except Exception as e:
     print("Erro ao tentar criar a Tabela tab1: ", e)
+
+
+if existDataInTable1() == False:
+	try:
+		saveFakeDataInTable1()
+	except Exception as e:
+		print("Erro ao tentar popular inicialmente a tabela1", e)

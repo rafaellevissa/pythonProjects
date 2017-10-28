@@ -58,7 +58,7 @@ else:
 
 
 	if existDataInTable1():
-		incrementContadorIntable1(str(countToday()))
+		incrementContadorIntable1(str(countToday()), selectLineProduction()[1])
 
 	else:
 		print('nao existe dados na tabela1')

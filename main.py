@@ -64,7 +64,7 @@ while (1):
 			if existDataInTable1():
 
 				try:
-					incrementContadorIntable1(str(countToday()))
+					incrementContadorIntable1(str(countToday()), selectLineProduction()[1])
 				except Exception as e:
 					print("Erro ao tentar Incrementar o Contador na tabela1", e)
 
@@ -88,7 +88,7 @@ while (1):
 			if existDataInTable1():
 
 				try:
-					incrementContadorIntable1(str(countToday()))
+					incrementContadorIntable1(str(countToday()), selectLineProduction()[1])
 				except Exception as e:
 					print("Erro ao tentar Incrementar o Contador na tabela1", e)
 

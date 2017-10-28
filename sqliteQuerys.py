@@ -284,15 +284,20 @@ def existDataInTable1():
 #-------------------------------------------------------------------------------
 # Salva os registros na tabela1
 #-------------------------------------------------------------------------------
-def incrementContadorIntable1(countToday):
+def incrementContadorIntable1(countToday, descriptionLineProduction):
 
-    cursor.execute("""UPDATE tab1 SET contador = ?""", (countToday, ))
+    cursor.execute("""UPDATE tab1 SET contador = ?, descricao_linha = ?""", (countToday, descriptionLineProduction,))
 
     conn.commit()
     conn.close()
 
 #-------------------------------------------------------------------------------
 
+
+
+#-------------------------------------------------------------------------------
+# Popula inicialmente a tabela1
+#-------------------------------------------------------------------------------
 def saveFakeDataInTable1():
     cursor.execute("""
         INSERT INTO tab1 
@@ -307,20 +312,20 @@ def saveFakeDataInTable1():
          minuto_termino,
          tempo_refresh_realizado,
          tempo_refresh_homem,
-         created_at) VALUES (?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+         created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
-            '5',
-            'linha05',
-            '4',
-            '2',
-            '12',
-            '12',
-            '18',
-            '12',
-            '1',
+            '0',
+            '0',
+            '0',
+            '0',
+            '0',
+            '0',
+            '0',
+            '0',
+            '0',
             '00',
-            '47',
-            '2017-10-25 22:00:00'
+            '0',
+            '0000-00-00 00:00:00'
             ))
 
     conn.commit()
