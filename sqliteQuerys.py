@@ -112,7 +112,7 @@ def saveLineProduction(lineProduction, descriptionLineProduction):
     """, (lineProduction, descriptionLineProduction, myDateFormat()))
 
     conn.commit()
-    conn.close()
+    #conn.close()
 #-------------------------------------------------------------------------------
 
 
@@ -254,7 +254,7 @@ def deleteExporteds():
     """)
 
     conn.commit()
-    conn.close()
+    #conn.close()
 
 #-------------------------------------------------------------------------------
 
@@ -289,7 +289,7 @@ def incrementContadorIntable1(countToday, descriptionLineProduction):
     cursor.execute("""UPDATE tab1 SET contador = ?, descricao_linha = ?""", (countToday, descriptionLineProduction,))
 
     conn.commit()
-    conn.close()
+    #conn.close()
 
 #-------------------------------------------------------------------------------
 
@@ -329,4 +329,4 @@ def saveFakeDataInTable1():
             ))
 
     conn.commit()
-    conn.close()
+    #conn.close()
