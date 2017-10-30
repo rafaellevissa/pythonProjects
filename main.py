@@ -8,6 +8,7 @@ from sqliteQuerys import showMeTheProducaoTable
 from sqliteQuerys import existLineProduction
 from sqliteQuerys import incrementContadorIntable1
 from sqliteQuerys import existDataInTable1
+from sqliteQuerys import countToday
 from terminalClear import terminalClear
 import datetime
 import time
