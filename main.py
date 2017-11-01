@@ -49,6 +49,8 @@ while (1):
 
 	if GPIO.event_detected(PIN):
 
+		time.sleep(2)
+
 		if (existSignalFromHour() != True):
 
 			try:
@@ -95,7 +97,4 @@ while (1):
 
 			else:
 				print("Nao existe registros na tabela 1. O campo contador nao pode ser Incrementado")
-
-	GPIO.remove_event_detect(PIN)
-	time.sleep(2)
 #-------------------------------------------------------------------------------
