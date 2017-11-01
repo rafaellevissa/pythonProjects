@@ -95,4 +95,7 @@ while (1):
 
 			else:
 				print("Nao existe registros na tabela 1. O campo contador nao pode ser Incrementado")
+
+	GPIO.remove_event_detect(PIN)
+	time.sleep(2)
 #-------------------------------------------------------------------------------
