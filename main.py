@@ -47,9 +47,7 @@ if existLineProduction() == False:
 #-------------------------------------------------------------------------------
 while (1):
 
-	if GPIO.event_detected(PIN):
-
-		time.sleep(2)
+	if GPIO.event_detected(PIN, bouncetime = 200):
 
 		if (existSignalFromHour() != True):
 
