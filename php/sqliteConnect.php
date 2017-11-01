@@ -3,6 +3,6 @@ class Mysqlite extends SQLite3
 {
 	public function __construct()
 	{
-		$this->open("../cadeado.db");
+		$this->open("/usr/share/pythonProjects/cadeado.db");
 	}
 }
