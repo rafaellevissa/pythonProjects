@@ -27,7 +27,7 @@ GPIO.setwarnings(False)
 GPIO.setup(PIN,GPIO.IN, pull_up_down = GPIO.PUD_DOWN) 
 
 # Cadastrando evento de borda de descida
-GPIO.add_event_detect(PIN, GPIO.FALLING)
+GPIO.add_event_detect(PIN, GPIO.FALLING, bouncetime = 200)
 
 
 
@@ -47,7 +47,7 @@ if existLineProduction() == False:
 #-------------------------------------------------------------------------------
 while (1):
 
-	if GPIO.event_detected(PIN, bouncetime = 200):
+	if GPIO.event_detected(PIN):
 
 		if (existSignalFromHour() != True):
 
