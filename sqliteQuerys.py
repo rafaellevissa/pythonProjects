@@ -294,6 +294,21 @@ def incrementContadorIntable1(countToday, descriptionLineProduction):
 #-------------------------------------------------------------------------------
 
 
+
+#-------------------------------------------------------------------------------
+# Edita os campos linha e descricao_linha da tabela1
+#-------------------------------------------------------------------------------
+def updateLineProductionAndDescritionLineInTable1(lineProduction, descritionLineProduction):
+
+    cursor.execute("""UPDATE tab1 SET linha = ?, descricao_linha = ?""", (lineProduction, descritionLineProduction,))
+
+    conn.commit()
+    #conn.close()
+
+#-------------------------------------------------------------------------------
+
+
+
 #-------------------------------------------------------------------------------
 # Zera o campo contador da tabela 1
 #-------------------------------------------------------------------------------
@@ -310,7 +325,7 @@ def cleanContadorFielInTable1():
 #-------------------------------------------------------------------------------
 # Popula inicialmente a tabela1
 #-------------------------------------------------------------------------------
-def saveFakeDataInTable1():
+def saveFakeDataInTable1(lineProduction, descritionLine):
     cursor.execute("""
         INSERT INTO tab1 
         (linha, 
@@ -326,8 +341,8 @@ def saveFakeDataInTable1():
          tempo_refresh_homem,
          created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
-            '0',
-            '0',
+            lineProduction,
+            descritionLine,
             '0',
             '0',
             '0',

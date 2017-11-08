@@ -74,6 +74,6 @@ except Exception as e:
 
 if existDataInTable1() == False:
 	try:
-		saveFakeDataInTable1()
+		saveFakeDataInTable1('0', '0')
 	except Exception as e:
 		print("Erro ao tentar popular inicialmente a tabela1", e)
